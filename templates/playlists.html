@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">  <!-- Set the language of the document to English -->
+<head>
+    <meta charset="UTF-8">  <!-- Define the character encoding for the HTML document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Make the page responsive for mobile devices -->
+    <title>Your Playlists</title>  <!-- Set the title of the page displayed in the browser tab -->
+</head>
+<body>
+    <h1>Your Spotify Playlists</h1>  <!-- Main heading of the page -->
+
+    <ul>  <!-- Unordered list to display the playlists -->
+        {% for playlist in playlists %}  <!-- Loop through each playlist passed from the Flask view -->
+            <li style="margin-bottom: 20px;">  <!-- List item for each playlist -->
+                <h2>{{ playlist.name }}</h2>  <!-- Display the name of the playlist -->
+                {% if playlist.image %}  <!-- Check if the playlist has an associated image -->
+                    <img src="{{ playlist.image }}" alt="{{ playlist.name }} cover" style="width: 150px; height: 150px;">  <!-- Display the playlist image with specified width and height -->
+                {% else %}  <!-- If no image is available -->
+                    <p>No image available</p>  <!-- Display a message indicating the absence of an image -->
+                {% endif %}  <!-- End of the image check -->
+
+                <form action="{{ url_for('shuffle_playlist', playlist_id=playlist.id) }}" method="GET" style="display:inline;">  <!-- Form to handle the shuffle action for the playlist -->
+                    <button type="submit">Shuffle</button>  <!-- Button to submit the form and trigger the shuffle action -->
+                </form>
+            </li>  <!-- End of the playlist list item -->
+        {% endfor %}  <!-- End of the playlist loop -->
+    </ul>  <!-- End of the unordered list -->
+</body>
+</html>
