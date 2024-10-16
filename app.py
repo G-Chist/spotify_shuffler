@@ -4,7 +4,6 @@ from flask import Flask, request, redirect, session, render_template, url_for  #
 from keys import client_ID, client_secret, secret_flask  # Importing sensitive keys from a separate module
 from random import randint  # Importing randint to generate random numbers for shuffling
 
-# Spotify API credentials
 CLIENT_ID = client_ID  # Set the client ID from keys
 CLIENT_SECRET = client_secret  # Set the client secret from keys
 REDIRECT_URI = 'http://localhost:5000/callback'  # Define the redirect URI after authorization
