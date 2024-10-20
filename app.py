@@ -38,7 +38,7 @@ def reorder_tracks(access_token, playlist_id, range_start, insert_before):
     response = requests.put(url, headers=headers, json=data)  # Send the PUT request to reorder tracks
 
 
-# Authorization URL
+# Authorization URL (default)
 @app.route('/')  # Define the route for the main page
 def authorize():
     auth_url = 'https://accounts.spotify.com/authorize'  # Spotify's authorization URL
