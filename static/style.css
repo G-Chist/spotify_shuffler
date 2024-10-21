@@ -1,4 +1,9 @@
 body {
-    background-color: gray;
+    background-color: #2B2E33; /* Charcoal */
+    color: #E0E6ED; /* Off-white text for readability */
     font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #F5F7FA; /* Brighter off-white for headers */
 }
