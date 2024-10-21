@@ -13,3 +13,23 @@ ul {
     padding: 0; /* Removes default padding */
     margin: 0; /* Removes default margin */
 }
+
+.shuffle_button {
+    background-color: #5A6373; /* Subtle gray-blue */
+    color: #E6E9ED; /* Light text */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shuffle_button:hover {
+    background-color: #6B7486; /* Slightly brighter on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.shuffle_button:active {
+    background-color: #434A54; /* Darker click effect */
+}
