@@ -10,8 +10,6 @@ h1 {
 
 ul {
     list-style-type: none; /* Removes bullets from unordered lists */
-    padding: 0; /* Removes default padding */
-    margin: 0; /* Removes default margin */
 }
 
 .shuffle_button {
