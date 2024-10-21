@@ -20,7 +20,7 @@
                 {% endif %}  <!-- End of the image check -->
 
                 <form action="{{ url_for('shuffle_playlist', playlist_id=playlist.id) }}" method="GET" style="display:inline;">  <!-- Form to handle the shuffle action for the playlist -->
-                    <button type="submit">Shuffle</button>  <!-- Button to submit the form and trigger the shuffle action -->
+                    <button type="submit" class="shuffle_button">Shuffle</button>  <!-- Button to submit the form and trigger the shuffle action -->
                 </form>
             </li>  <!-- End of the playlist list item -->
         {% endfor %}  <!-- End of the playlist loop -->
