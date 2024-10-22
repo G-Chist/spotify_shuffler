@@ -31,3 +31,10 @@ ul {
 .shuffle_button:active {
     background-color: #434A54; /* Darker click effect */
 }
+
+.playlist_container {
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    width: 80vw; /* Almost full width */
+}
