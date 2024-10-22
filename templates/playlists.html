@@ -11,7 +11,7 @@
 
     <ul>  <!-- Unordered list to display the playlists -->
         {% for playlist in playlists %}  <!-- Loop through each playlist passed from the Flask view -->
-            <li style="margin-bottom: 20px;">  <!-- List item for each playlist -->
+            <li>  <!-- List item for each playlist -->
                 <div class="playlist_container">
                     <div class="content">
                         <h2>{{ playlist.name }}</h2>  <!-- Display the name of the playlist -->
