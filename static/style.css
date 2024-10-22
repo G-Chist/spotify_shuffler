@@ -5,6 +5,12 @@ body {
 }
 
 h1 {
+    font-size: 3vh;  /* Font size is 3% of the viewport height */
+    color: #F5F7FA; /* Brighter off-white for headers */
+}
+
+h2 {
+    font-size: 2vh;  /* Font size is 4% of the viewport height */
     color: #F5F7FA; /* Brighter off-white for headers */
 }
 
@@ -20,8 +26,8 @@ li {
     background-color: #5A6373; /* Subtle gray-blue */
     color: #E6E9ED; /* Light text */
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
+    border-radius: 1vw;
+    padding: 1vh 1vw 1vh 1vw;  /* Top, right, bottom, left padding */
     font-family: Arial, sans-serif;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -29,7 +35,6 @@ li {
 
 .shuffle_button:hover {
     background-color: #6B7486; /* Slightly brighter on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
 .shuffle_button:active {
@@ -52,6 +57,7 @@ li {
 }
 
 .content img {
-    width: 10vw;
-    height: 10vw;
+    width: 20vh;
+    height: 20vh;
+    padding: 2vh 0vw 2vh 0vw;  /* Top, right, bottom, left padding */
 }
