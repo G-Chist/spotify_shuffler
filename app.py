@@ -116,8 +116,12 @@ def shuffle_playlist(playlist_id):
 
         # Shuffle using Fisher-Yates
         for i in range(num_tracks - 1, 0, -1):  # Loop to shuffle tracks
+            start_time = time.time()  # Time when track shuffling started (seconds)
             j = randint(0, i)  # Generate a random index from 0 to i
             reorder_tracks(access_token, playlist_id, i, j)  # Move the track from i to j
+            end_time = time.time()  # Time when track shuffling ended (seconds)
+            elapsed_time = end_time - start_time  # Calculate elapsed time in seconds
+            print(f"Elapsed time: {elapsed_time} seconds")  # Print how long it took to shuffle 1 track
 
     return redirect(url_for('playlists'))  # Redirect back to the playlists page
 
