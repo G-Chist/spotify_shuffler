@@ -16,7 +16,7 @@
                     <div class="content">
                         <h2>{{ playlist.name }}</h2>  <!-- Display the name of the playlist -->
                         {% if playlist.image %}  <!-- Check if the playlist has an associated image -->
-                            <img src="{{ playlist.image }}" alt="{{ playlist.name }} cover" style="width: 150px; height: 150px;">  <!-- Display the playlist image with specified width and height -->
+                            <img src="{{ playlist.image }}" alt="{{ playlist.name }} cover">  <!-- Display the playlist image with specified width and height -->
                         {% else %}  <!-- If no image is available -->
                             <p>No image available</p>  <!-- Display a message indicating the absence of an image -->
                         {% endif %}  <!-- End of the image check -->

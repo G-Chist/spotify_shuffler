@@ -50,3 +50,8 @@ li {
     border-radius: 2vh;       /* Corner rounding based on viewport height */
     padding: 2vh 2vw 4vh 2vw;  /* Top, right, bottom, left padding */
 }
+
+.content img {
+    width: 10vw;
+    height: 10vw;
+}
