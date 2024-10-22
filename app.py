@@ -3,6 +3,7 @@ import urllib.parse  # Importing urllib to handle URL encoding
 from flask import Flask, request, redirect, session, render_template, url_for  # Importing Flask-related functions
 from keys import client_ID, client_secret, secret_flask  # Importing sensitive keys from a separate module
 from random import randint  # Importing randint to generate random numbers for shuffling
+import time  # Importing time to keep track of how long it takes to shuffle
 
 CLIENT_ID = client_ID  # Set the client ID from keys
 CLIENT_SECRET = client_secret  # Set the client secret from keys
