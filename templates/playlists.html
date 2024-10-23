@@ -16,7 +16,7 @@
       <li>
           <div id="popup" class="popup">
               <p>{{ message }}</p>
-              <span class="close" onclick="closePopup()">&times;</span>
+              <span class="close" onclick="hidePopup()">&times;</span>
         </div>
       </li>
     {% endfor %}
@@ -38,7 +38,7 @@
                         {% else %}  <!-- If no image is available -->
                             <p>No image available</p>  <!-- Display a message indicating the absence of an image -->
                         {% endif %}  <!-- End of the image check -->
-                        <h3>{{ playlist.length }} tracks <b>&#8658;</b> the estimated shuffle time is {{ playlist.estimated_shuffle_time }} seconds</h3> <!-- Display track count and estimated shuffle time -->
+                        <h3>{{ playlist.length }} tracks <b>&#8658;</b> estimated shuffle time is {{ playlist.estimated_shuffle_time }} seconds</h3> <!-- Display track count and estimated shuffle time -->
 
                         <form action="{{ url_for('shuffle_playlist', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the shuffle action for the playlist -->
                             <button type="submit" class="shuffle_button">Shuffle</button>  <!-- Button to submit the form and trigger the shuffle action -->
@@ -53,7 +53,11 @@
 </html>
 
 <script>
-    function closePopup() {
-        document.getElementById("popup").style.display = "none";
+    function hidePopup() {
+        const popup = document.querySelector('.popup');
+        popup.classList.add('hide'); // Add class to trigger transition
+        setTimeout(() => {
+            popup.style.display = 'none'; // Remove from view after transition
+        }, 500); // Match the duration of the CSS transition
     }
 </script>
