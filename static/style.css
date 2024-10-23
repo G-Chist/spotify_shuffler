@@ -30,6 +30,26 @@ li {
     margin-bottom: 5vh;
 }
 
+.popup {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #434A54; /* Dark gray */
+    color: #E6E9ED; /* Light gray */
+    padding: 15px;
+    width: 90%; /* Responsive width */
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 20px;
+}
+
 .shuffle_button {
     width: max(11vw, 11vh);  /* larger value between 11% of viewport width or height */
     height: 7vh;

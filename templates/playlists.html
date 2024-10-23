@@ -7,6 +7,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">  <!-- Specifies a style sheet -->
 </head>
 <body>
+
+<!-- Popup message -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>
+          <div id="popup" class="popup">
+              <p>{{ message }}</p>
+              <span class="close" onclick="closePopup()">&times;</span>
+        </div>
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
     <h1>Your Spotify Playlists</h1>  <!-- Title of the page -->
 
     <ul>  <!-- Unordered list to display the playlists -->
@@ -14,17 +31,19 @@
             <li>  <!-- List item for each playlist -->
                 <div class="playlist_container">
                     <div class="content">
+
                         <h2>{{ playlist.name }}</h2>  <!-- Display the name of the playlist -->
                         {% if playlist.image %}  <!-- Check if the playlist has an associated image -->
                             <img src="{{ playlist.image }}" alt="{{ playlist.name }} cover">  <!-- Display the playlist image -->
                         {% else %}  <!-- If no image is available -->
                             <p>No image available</p>  <!-- Display a message indicating the absence of an image -->
                         {% endif %}  <!-- End of the image check -->
-                        <h3>{{ playlist.length }} tracks   <b>&rarr;</b>   the estimated shuffle time is {{ playlist.estimated_shuffle_time }} seconds</h3> <!-- Display track count and estimated shuffle time -->
+                        <h3>{{ playlist.length }} tracks <b>&rarr;</b> the estimated shuffle time is {{ playlist.estimated_shuffle_time }} seconds</h3> <!-- Display track count and estimated shuffle time -->
 
                         <form action="{{ url_for('shuffle_playlist', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the shuffle action for the playlist -->
                             <button type="submit" class="shuffle_button">Shuffle</button>  <!-- Button to submit the form and trigger the shuffle action -->
                         </form>
+
                     </div>
                 </div>
             </li>  <!-- End of the playlist list item -->
@@ -32,3 +51,9 @@
     </ul>  <!-- End of the unordered list -->
 </body>
 </html>
+
+<script>
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+</script>
