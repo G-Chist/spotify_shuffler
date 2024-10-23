@@ -91,7 +91,8 @@ def playlists():
             'id': playlist["id"],  # Include the playlist ID
             'name': playlist["name"],  # Include the playlist name
             'image': playlist["images"][0]["url"] if playlist["images"] else None,  # Include the first image or None
-            'length': playlist["tracks"]["total"]  # Include the length of the playlist
+            'length': playlist["tracks"]["total"],  # Include the length of the playlist
+            'estimated_shuffle_time': int(int(playlist["tracks"]["total"]) * 0.2)  # Include estimated shuffle time
         }
         for playlist in playlists_data if playlist["owner"]["id"] == user_id  # Filter by user-owned playlists
     ]
