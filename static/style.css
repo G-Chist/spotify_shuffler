@@ -60,4 +60,5 @@ li {
     width: 20vh;
     height: 20vh;
     padding: 2vh 0vw 2vh 0vw;  /* Top, right, bottom, left padding */
+    border-radius: 20%; /* Round corners */
 }
