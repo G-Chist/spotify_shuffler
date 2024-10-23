@@ -20,6 +20,7 @@
                         {% else %}  <!-- If no image is available -->
                             <p>No image available</p>  <!-- Display a message indicating the absence of an image -->
                         {% endif %}  <!-- End of the image check -->
+                        <h3>{{ playlist.length }} tracks</h3> <!-- Display track count -->
 
                         <form action="{{ url_for('shuffle_playlist', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the shuffle action for the playlist -->
                             <button type="submit" class="shuffle_button">Shuffle</button>  <!-- Button to submit the form and trigger the shuffle action -->

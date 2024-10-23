@@ -90,10 +90,13 @@ def playlists():
         {
             'id': playlist["id"],  # Include the playlist ID
             'name': playlist["name"],  # Include the playlist name
-            'image': playlist["images"][0]["url"] if playlist["images"] else None  # Include the first image or None
+            'image': playlist["images"][0]["url"] if playlist["images"] else None,  # Include the first image or None
+            'length': playlist["tracks"]["total"]  # Include the length of the playlist
         }
         for playlist in playlists_data if playlist["owner"]["id"] == user_id  # Filter by user-owned playlists
     ]
+
+    print(playlists_data)
 
     return render_template("playlists.html", playlists=playlists_display_format)  # Render the playlists in the HTML
 
