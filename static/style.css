@@ -7,7 +7,7 @@ body {
 h1 {
     font-size: 3vh;  /* Font size is 3% of the viewport height */
     color: #F5F7FA; /* Brighter off-white for headers */
-    padding: 2vh 10vw 1vh 0vw;  /* Top, right, bottom, left padding */
+    padding: 2vh 10vw 1vh 20vw;  /* Top, right, bottom, left padding */
 }
 
 h2 {
