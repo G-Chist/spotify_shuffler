@@ -55,7 +55,7 @@ li {
 .content {
     text-align: left;         /* Aligns content to the left */
     padding-left: 2vw;        /* Space from the left border (2% of viewport width) */
-    width: 50vw;              /* Makes the div 50% of the viewport width */
+    width: 40vw;              /* Makes the div 50% of the viewport width */
     background-color: #3A3F44; /* A little brighter than the background */
     border-radius: 2vh;       /* Corner rounding based on viewport height */
     padding: 2vh 2vw 4vh 2vw;  /* Top, right, bottom, left padding */
