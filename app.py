@@ -1,6 +1,6 @@
 import requests  # Importing requests library to make HTTP requests
 import urllib.parse  # Importing urllib to handle URL encoding
-from flask import Flask, request, redirect, session, render_template, url_for  # Importing Flask-related functions
+from flask import Flask, request, redirect, session, render_template, url_for, flash  # Flask-related functions
 from keys import client_ID, client_secret, secret_flask  # Importing sensitive keys from a separate module
 from random import randint  # Importing randint to generate random numbers for shuffling
 import time  # Importing time to keep track of how long it takes to shuffle
@@ -105,6 +105,7 @@ def playlists():
 # Route to handle button click (receives playlist ID)
 @app.route('/shuffle_playlist/<playlist_id>', methods=['GET'])  # Define the route to shuffle a playlist
 def shuffle_playlist(playlist_id):
+    shuffle_start_time = time.time()  # Get time (in seconds) when shuffling started
     access_token = session.get('access_token')  # Retrieve the access token from the session
     headers = {'Authorization': f'Bearer {access_token}'}  # Set the Authorization header
     url = f'https://api.spotify.com/v1/playlists/{playlist_id}'  # Define the URL to get playlist details
@@ -124,6 +125,10 @@ def shuffle_playlist(playlist_id):
             reorder_tracks(access_token, playlist_id, i, j)  # Move the track from i to j
         # Time to shuffle per track: ~0.2 seconds
 
+    shuffle_end_time = time.time()  # Get time (in seconds) when shuffling ended
+    shuffle_total_time = f"{shuffle_end_time - shuffle_start_time:.2f}"  # Total shuffling time, 2 digits after point
+
+    flash(f"Playlist shuffling time: {shuffle_total_time}")  # Return message containing shuffle time to playlists page
     return redirect(url_for('playlists'))  # Redirect back to the playlists page
 
 
