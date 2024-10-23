@@ -128,7 +128,7 @@ def shuffle_playlist(playlist_id):
     shuffle_end_time = time.time()  # Get time (in seconds) when shuffling ended
     shuffle_total_time = f"{shuffle_end_time - shuffle_start_time:.2f}"  # Total shuffling time, 2 digits after point
 
-    flash(f"Playlist shuffling time: {shuffle_total_time}")  # Return message containing shuffle time to playlists page
+    flash(f"Playlist shuffle time: {shuffle_total_time} seconds")  # Return message containing shuffle time
     return redirect(url_for('playlists'))  # Redirect back to the playlists page
 
 
