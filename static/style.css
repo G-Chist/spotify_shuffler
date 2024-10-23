@@ -31,23 +31,23 @@ li {
 }
 
 .popup {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #434A54; /* Dark gray */
-    color: #E6E9ED; /* Light gray */
-    padding: 15px;
-    width: 90%; /* Responsive width */
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed; /* Fix the popup to the viewport so it stays in view when scrolling */
+    top: 0; /* Position the popup at the top of the screen */
+    left: 50%; /* Center the popup horizontally */
+    transform: translateX(-50%); /* Offset the popup to truly center it */
+    background-color: #434A54; /* Set a dark gray background color */
+    color: #E6E9ED; /* Set a light gray text color */
+    padding: 15px; /* Add space inside the popup around the text */
+    width: 90%; /* Set the popup width to 90% of the viewport */
+    z-index: 1000; /* Ensure the popup is above other elements */
+    display: flex; /* Use flexbox layout for alignment */
+    justify-content: space-between; /* Space between the content and close button */
+    align-items: center; /* Vertically center the content */
 }
 
 .close {
-    cursor: pointer;
-    font-size: 20px;
+    cursor: pointer; /* Change the cursor to indicate that the button is clickable */
+    font-size: max(4vw, 4vh); /* larger value between 4% of viewport width or height */
 }
 
 .shuffle_button {
