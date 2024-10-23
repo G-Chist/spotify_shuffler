@@ -97,8 +97,6 @@ def playlists():
         for playlist in playlists_data if playlist["owner"]["id"] == user_id  # Filter by user-owned playlists
     ]
 
-    print(playlists_data)
-
     return render_template("playlists.html", playlists=playlists_display_format)  # Render the playlists in the HTML
 
 
