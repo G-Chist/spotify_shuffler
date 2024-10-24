@@ -5,9 +5,9 @@ body {
 }
 
 h1 {
-    font-size: 3vh;  /* Font size is 3% of the viewport height */
+    font-size: 3.5vh;  /* Font size is 3% of the viewport height */
     color: #F5F7FA; /* Brighter off-white for headers */
-    padding: 2vh 10vw 1vh 20vw;  /* Top, right, bottom, left padding */
+    padding: 2vh 37vw 1vh 37vw;  /* Top, right, bottom, left padding */
 }
 
 h2 {
@@ -37,7 +37,7 @@ li {
     position: fixed; /* Fix the popup to the viewport so it stays in view when scrolling */
     top: 0; /* Position the popup at the top of the screen */
     left: 50%; /* Center the popup horizontally */
-    transform: translateX(-50%); /* Offset the popup to truly center it */
+    transform: translateX(-50%); /* Offset to truly center it */
     background-color: #434A54; /* Set a dark gray background color */
     color: #E6E9ED; /* Set a light gray text color */
     padding: 15px; /* Add space inside the popup around the text */
