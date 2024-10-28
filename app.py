@@ -26,6 +26,34 @@ def get_tracks(playlist_id, headers):
     return response.json().get('items', [])
 
 
+def add_tracks(access_token, playlist_id, tracks_list):
+    """
+    Add given tracks to a Spotify playlist.
+
+    :param access_token: OAuth token for Spotify API access.
+    :param playlist_id: ID of the playlist to modify.
+    :param tracks_list: List of tracks to add to the playlist.
+    """
+    url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"  # Spotify API endpoint for adding tracks
+
+    len_tracks = len(tracks_list)  # Get the size of the list of tracks to add
+
+    headers = {
+        'Authorization': f'Bearer {access_token}',  # Set Authorization header with the access token
+        'Content-Type': 'application/json'  # Set Content-Type for JSON data
+    }
+
+    while len_tracks > 0:  # Continue until all tracks are added
+        track_uris = [item['track']['uri'] for item in tracks_list[:100]]  # Limit to 100 per request
+        data = {'uris': track_uris, 'position': 0}  # Prepare data to add
+
+        response = requests.post(url, headers=headers, json=data)  # Send POST request
+        if response.status_code != 201:
+            raise Exception(f"Failed to add tracks: {response.status_code} {response.json()}")
+
+        len_tracks -= 100  # Keep track of number of tracks to add
+
+
 def remove_all_tracks(access_token, playlist_id):
     """
     Remove all tracks from a Spotify playlist.
@@ -51,7 +79,7 @@ def remove_all_tracks(access_token, playlist_id):
             raise Exception(f"Failed to remove tracks: {response.status_code} {response.json()}")
 
         # print(f"Removed {len(track_uris)} tracks.")  # Log the removal progress
-        tracks = get_tracks()  # Fetch remaining tracks
+        tracks = get_tracks(playlist_id=playlist_id, headers=headers)  # Fetch remaining tracks
 
     # print("All tracks have been removed from the playlist.")
 
@@ -181,7 +209,9 @@ def clear_playlist(playlist_id):
 
     response = requests.get(url, headers=headers)  # Request the playlist details
 
+    track_list = get_tracks(playlist_id=playlist_id, headers=headers)  # Get tracks from playlist
     remove_all_tracks(access_token=access_token, playlist_id=playlist_id)  # Remove all tracks from the playlist
+    add_tracks(access_token=access_token, playlist_id=playlist_id, tracks_list=track_list)  # Add tracks to the playlist
     flash(f"Playlist cleared successfully!")  # Return message saying playlist was cleared
 
     return redirect(url_for('playlists'))  # Redirect back to the playlists page
