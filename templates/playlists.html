@@ -45,8 +45,8 @@
                                 <button type="submit" class="shuffle_button">Shuffle</button>  <!-- Button to submit the form and trigger the shuffle action -->
                             </form>
 
-                            <form action="{{ url_for('clear_playlist', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the clear action for the playlist -->
-                                <button type="submit" class="clear_button">Clear playlist</button>  <!-- Button to submit the form and trigger the clear action -->
+                            <form action="{{ url_for('fast_shuffle_playlist', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the fast_shuffle action for the playlist -->
+                                <button type="submit" class="fast_shuffle_button">Fast shuffle</button>  <!-- Button to submit the form and trigger the fast shuffle action -->
                             </form>
                         </div>
 

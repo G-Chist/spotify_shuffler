@@ -4,6 +4,7 @@ from flask import Flask, request, redirect, session, render_template, url_for, f
 from keys import client_ID, client_secret, secret_flask  # Importing sensitive keys from a separate module
 from random import randint  # Importing randint to generate random numbers for shuffling
 import time  # Importing time to keep track of how long it takes to shuffle
+from list_shuffler import fisher_yates_shuffle  # Import list shuffling function
 
 CLIENT_ID = client_ID  # Set the client ID from keys
 CLIENT_SECRET = client_secret  # Set the client secret from keys
@@ -201,8 +202,9 @@ def shuffle_playlist(playlist_id):
 
 
 # Route to handle clear button click (receives playlist ID)
-@app.route('/clear_playlist/<playlist_id>', methods=['GET'])  # Define the route to shuffle a playlist
-def clear_playlist(playlist_id):
+@app.route('/fast_shuffle_playlist/<playlist_id>', methods=['GET'])  # Define the route to shuffle a playlist
+def fast_shuffle_playlist(playlist_id):
+    shuffle_start_time = time.time()  # Get time (in seconds) when shuffling started
     access_token = session.get('access_token')  # Retrieve the access token from the session
     headers = {'Authorization': f'Bearer {access_token}'}  # Set the Authorization header
     url = f'https://api.spotify.com/v1/playlists/{playlist_id}'  # Define the URL to get playlist details
@@ -210,9 +212,14 @@ def clear_playlist(playlist_id):
     response = requests.get(url, headers=headers)  # Request the playlist details
 
     track_list = get_tracks(playlist_id=playlist_id, headers=headers)  # Get tracks from playlist
+    shuffled_track_list = fisher_yates_shuffle(track_list)  # Shuffle track list
     remove_all_tracks(access_token=access_token, playlist_id=playlist_id)  # Remove all tracks from the playlist
-    add_tracks(access_token=access_token, playlist_id=playlist_id, tracks_list=track_list)  # Add tracks to the playlist
-    flash(f"Playlist cleared successfully!")  # Return message saying playlist was cleared
+    add_tracks(access_token=access_token, playlist_id=playlist_id, tracks_list=shuffled_track_list)  # Add tracks to the playlist
+
+    shuffle_end_time = time.time()  # Get time (in seconds) when shuffling ended
+    shuffle_total_time = f"{shuffle_end_time - shuffle_start_time:.2f}"  # Total shuffling time, 2 digits after point
+
+    flash(f"Playlist shuffle time: {shuffle_total_time} seconds")  # Return message containing shuffle time
 
     return redirect(url_for('playlists'))  # Redirect back to the playlists page
 
