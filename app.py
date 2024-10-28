@@ -14,6 +14,49 @@ app = Flask(__name__)  # Create a Flask application instance
 app.secret_key = secret_flask  # Set the secret key for session management
 
 
+def get_tracks(access_token, playlist_id, headers):
+    """Retrieve the current tracks from the playlist.
+
+    :param access_token: OAuth token for Spotify API access.
+    :param playlist_id: ID of the playlist to modify.
+    :param headers: Request headers.
+    """
+    response = requests.get(f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks", headers=headers)
+    if response.status_code != 200:
+        raise Exception(f"Failed to get tracks: {response.status_code} {response.json()}")
+    return response.json().get('items', [])
+
+
+def remove_all_tracks(access_token, playlist_id):
+    """
+    Remove all tracks from a Spotify playlist.
+
+    :param access_token: OAuth token for Spotify API access.
+    :param playlist_id: ID of the playlist to modify.
+    """
+    url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"  # Spotify API endpoint for removing tracks
+
+    headers = {
+        'Authorization': f'Bearer {access_token}',  # Set Authorization header with the access token
+        'Content-Type': 'application/json'  # Set Content-Type for JSON data
+    }
+
+    tracks = get_tracks()  # Fetch the initial set of tracks
+
+    while tracks:  # Continue until all tracks are removed
+        track_uris = [{'uri': item['track']['uri']} for item in tracks[:100]]  # Limit to 100 per request
+        data = {'tracks': track_uris}  # Prepare data for removal
+
+        response = requests.delete(url, headers=headers, json=data)  # Send DELETE request
+        if response.status_code != 200:
+            raise Exception(f"Failed to remove tracks: {response.status_code} {response.json()}")
+
+        print(f"Removed {len(track_uris)} tracks.")  # Log the removal progress
+        tracks = get_tracks()  # Fetch remaining tracks
+
+    print("All tracks have been removed from the playlist.")
+
+
 def reorder_tracks(access_token, playlist_id, range_start, insert_before):
     """
     Reorder tracks in a Spotify playlist.
