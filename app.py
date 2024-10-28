@@ -15,16 +15,35 @@ app = Flask(__name__)  # Create a Flask application instance
 app.secret_key = secret_flask  # Set the secret key for session management
 
 
+def chunk_array(arr, chunk_size=100):
+    """Split an array into chunks of specified size.
+
+    :param arr: Array to split into chunks.
+    :param chunk_size: Chunk size.
+    """
+    return [arr[i:i + chunk_size] for i in range(0, len(arr), chunk_size)]
+
+
 def get_tracks(playlist_id, headers):
-    """Retrieve the current tracks from the playlist.
+    """Retrieve all tracks from the playlist.
 
     :param playlist_id: ID of the playlist to modify.
     :param headers: Request headers.
+    :return: List of all tracks in the playlist.
     """
-    response = requests.get(f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks", headers=headers)
-    if response.status_code != 200:
-        raise Exception(f"Failed to get tracks: {response.status_code} {response.json()}")
-    return response.json().get('items', [])
+    tracks = []  # Initialize an empty list to store tracks
+    url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"  # Base URL for the request
+
+    while url:  # Continue looping while there is a URL to request
+        response = requests.get(url, headers=headers)  # Make the GET request
+        if response.status_code != 200:
+            raise Exception(f"Failed to get tracks: {response.status_code} {response.json()}")
+
+        data = response.json()  # Parse the JSON response
+        tracks.extend(data.get('items', []))  # Add the current items to the tracks list
+        url = data.get('next')  # Update the URL to the next page of results
+
+    return tracks  # Return the complete list of tracks
 
 
 def add_tracks(access_token, playlist_id, tracks_list):
@@ -44,15 +63,19 @@ def add_tracks(access_token, playlist_id, tracks_list):
         'Content-Type': 'application/json'  # Set Content-Type for JSON data
     }
 
-    while len_tracks > 0:  # Continue until all tracks are added
-        track_uris = [item['track']['uri'] for item in tracks_list[:100]]  # Limit to 100 per request
-        data = {'uris': track_uris, 'position': 0}  # Prepare data to add
+    tracks_list_chunks = chunk_array(arr=tracks_list, chunk_size=100)  # Chunk array to limit tracks to 100 per request
+
+    position_tracker = 0  # Variable to keep track of position to add tracks to
+    for chunk in tracks_list_chunks:
+        track_uris = [item['track']['uri'] for item in chunk]  # Limit to 100 per request
+        data = {'uris': track_uris, 'position': position_tracker}  # Prepare data to add
 
         response = requests.post(url, headers=headers, json=data)  # Send POST request
         if response.status_code != 201:
             raise Exception(f"Failed to add tracks: {response.status_code} {response.json()}")
 
         len_tracks -= 100  # Keep track of number of tracks to add
+        position_tracker += 100  # Update position
 
 
 def remove_all_tracks(access_token, playlist_id):
