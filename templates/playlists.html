@@ -40,9 +40,15 @@
                         {% endif %}  <!-- End of the image check -->
                         <h3>{{ playlist.length }} tracks <b>&#8658;</b> estimated shuffle time is {{ playlist.estimated_shuffle_time }} seconds</h3> <!-- Display track count and estimated shuffle time -->
 
-                        <form action="{{ url_for('shuffle_playlist', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the shuffle action for the playlist -->
-                            <button type="submit" class="shuffle_button">Shuffle</button>  <!-- Button to submit the form and trigger the shuffle action -->
-                        </form>
+                        <div class="button_container">
+                            <form action="{{ url_for('shuffle_playlist', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the shuffle action for the playlist -->
+                                <button type="submit" class="shuffle_button">Shuffle</button>  <!-- Button to submit the form and trigger the shuffle action -->
+                            </form>
+
+                            <form action="{{ url_for('clear_playlist', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the clear action for the playlist -->
+                                <button type="submit" class="clear_button">Clear playlist</button>  <!-- Button to submit the form and trigger the clear action -->
+                            </form>
+                        </div>
 
                     </div>
                 </div>

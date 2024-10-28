@@ -40,7 +40,7 @@ def remove_all_tracks(access_token, playlist_id):
         'Content-Type': 'application/json'  # Set Content-Type for JSON data
     }
 
-    tracks = get_tracks()  # Fetch the initial set of tracks
+    tracks = get_tracks(playlist_id=playlist_id, headers=headers)  # Fetch the initial set of tracks
 
     while tracks:  # Continue until all tracks are removed
         track_uris = [{'uri': item['track']['uri']} for item in tracks[:100]]  # Limit to 100 per request
@@ -50,10 +50,10 @@ def remove_all_tracks(access_token, playlist_id):
         if response.status_code != 200:
             raise Exception(f"Failed to remove tracks: {response.status_code} {response.json()}")
 
-        print(f"Removed {len(track_uris)} tracks.")  # Log the removal progress
+        # print(f"Removed {len(track_uris)} tracks.")  # Log the removal progress
         tracks = get_tracks()  # Fetch remaining tracks
 
-    print("All tracks have been removed from the playlist.")
+    # print("All tracks have been removed from the playlist.")
 
 
 def reorder_tracks(access_token, playlist_id, range_start, insert_before):
@@ -180,6 +180,9 @@ def clear_playlist(playlist_id):
     url = f'https://api.spotify.com/v1/playlists/{playlist_id}'  # Define the URL to get playlist details
 
     response = requests.get(url, headers=headers)  # Request the playlist details
+
+    remove_all_tracks(access_token=access_token, playlist_id=playlist_id)  # Remove all tracks from the playlist
+    flash(f"Playlist cleared successfully!")  # Return message saying playlist was cleared
 
     return redirect(url_for('playlists'))  # Redirect back to the playlists page
 

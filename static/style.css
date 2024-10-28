@@ -58,7 +58,13 @@ li {
     font-size: max(4vw, 4vh); /* larger value between 4% of viewport width or height */
 }
 
+.button_container {
+    display: flex;
+}
+
 .shuffle_button {
+    margin: 2.5vw 2.5vw; /* Ensure there is space between buttons */
+    display: inline-block; /* display in 1 line with other buttons */
     width: max(11vw, 11vh);  /* larger value between 11% of viewport width or height */
     height: 7vh;
     font-size: max(1.5vw, 1.5vh);  /* larger value between 1.5% of viewport width or height */
@@ -77,6 +83,30 @@ li {
 }
 
 .shuffle_button:active {
+    background-color: #434A54; /* Darker click effect */
+}
+
+.clear_button {
+    margin: 2.5vw 2.5vw; /* Ensure there is space between buttons */
+    display: inline-block; /* display in 1 line with other buttons */
+    width: max(11vw, 11vh);  /* larger value between 11% of viewport width or height */
+    height: 7vh;
+    font-size: max(1.5vw, 1.5vh);  /* larger value between 1.5% of viewport width or height */
+    background-color: #5A6373; /* Subtle gray-blue */
+    color: #E6E9ED; /* Light text */
+    border: none;
+    border-radius: 1vw;
+    padding: 1vh 1vw 1vh 1vw;  /* Top, right, bottom, left padding */
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clear_button:hover {
+    background-color: #6B7486; /* Slightly brighter on hover */
+}
+
+.clear_button:active {
     background-color: #434A54; /* Darker click effect */
 }
 
