@@ -14,10 +14,9 @@ app = Flask(__name__)  # Create a Flask application instance
 app.secret_key = secret_flask  # Set the secret key for session management
 
 
-def get_tracks(access_token, playlist_id, headers):
+def get_tracks(playlist_id, headers):
     """Retrieve the current tracks from the playlist.
 
-    :param access_token: OAuth token for Spotify API access.
     :param playlist_id: ID of the playlist to modify.
     :param headers: Request headers.
     """
