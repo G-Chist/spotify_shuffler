@@ -63,7 +63,7 @@ li {
 }
 
 .shuffle_button {
-    margin: 2.5vw 2.5vw; /* Ensure there is space between buttons */
+    margin: 2vh 0vw 0vh 0vw; /* Ensure there is space between buttons */
     display: inline-block; /* display in 1 line with other buttons */
     width: max(11vw, 11vh);  /* larger value between 11% of viewport width or height */
     height: 7vh;
@@ -87,7 +87,7 @@ li {
 }
 
 .fast_shuffle_button {
-    margin: 2.5vw 2.5vw; /* Ensure there is space between buttons */
+    margin: 2vh 0vw 0vh 0vw; /* Ensure there is space between buttons (top, left, bottom, right) */
     display: inline-block; /* display in 1 line with other buttons */
     width: max(11vw, 11vh);  /* larger value between 11% of viewport width or height */
     height: 7vh;
@@ -126,8 +126,8 @@ li {
 }
 
 .content img {
-    width: 20vh;
-    height: 20vh;
+    width: max(11vw, 11vh);  /* larger value between 11% of viewport width or height */
+    height: max(11vw, 11vh);  /* larger value between 11% of viewport width or height */
     padding: 2vh 0vw 0.5vh 0vw;  /* Top, right, bottom, left padding */
     border-radius: 20%; /* Round corners */
 }

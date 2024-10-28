@@ -38,15 +38,17 @@
                         {% else %}  <!-- If no image is available -->
                             <p>No image available</p>  <!-- Display a message indicating the absence of an image -->
                         {% endif %}  <!-- End of the image check -->
-                        <h3>{{ playlist.length }} tracks <b>&#8658;</b> estimated shuffle time is {{ playlist.estimated_shuffle_time }} seconds</h3> <!-- Display track count and estimated shuffle time -->
+                        <!-- <h3>{{ playlist.length }} tracks <b>&#8658;</b> estimated shuffle time is {{ playlist.estimated_shuffle_time }} seconds</h3> -->
 
                         <div class="button_container">
-                            <form action="{{ url_for('shuffle_playlist', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the shuffle action for the playlist -->
-                                <button type="submit" class="shuffle_button">Shuffle</button>  <!-- Button to submit the form and trigger the shuffle action -->
+                            <!--
+                            <form action="{{ url_for('shuffle_playlist', playlist_id=playlist.id) }}" method="GET">
+                                <button type="submit" class="shuffle_button">Shuffle</button>
                             </form>
+                            -->
 
                             <form action="{{ url_for('fast_shuffle_playlist', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the fast_shuffle action for the playlist -->
-                                <button type="submit" class="fast_shuffle_button">Fast shuffle</button>  <!-- Button to submit the form and trigger the fast shuffle action -->
+                                <button type="submit" class="fast_shuffle_button">Shuffle</button>  <!-- Button to submit the form and trigger the fast shuffle action -->
                             </form>
                         </div>
 

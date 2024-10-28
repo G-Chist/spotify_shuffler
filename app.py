@@ -194,7 +194,7 @@ def playlists():
     return render_template("playlists.html", playlists=playlists_display_format)  # Render the playlists in the HTML
 
 
-# Route to handle shuffle button click (receives playlist ID)
+# OUTDATED: Route to handle shuffle button click (receives playlist ID)
 @app.route('/shuffle_playlist/<playlist_id>', methods=['GET'])  # Define the route to shuffle a playlist
 def shuffle_playlist(playlist_id):
     shuffle_start_time = time.time()  # Get time (in seconds) when shuffling started
@@ -224,7 +224,7 @@ def shuffle_playlist(playlist_id):
     return redirect(url_for('playlists'))  # Redirect back to the playlists page
 
 
-# Route to handle clear button click (receives playlist ID)
+# Route to handle shuffle button click (receives playlist ID)
 @app.route('/fast_shuffle_playlist/<playlist_id>', methods=['GET'])  # Define the route to shuffle a playlist
 def fast_shuffle_playlist(playlist_id):
     shuffle_start_time = time.time()  # Get time (in seconds) when shuffling started
