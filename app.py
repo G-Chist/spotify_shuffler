@@ -15,15 +15,6 @@ app = Flask(__name__)  # Create a Flask application instance
 app.secret_key = secret_flask  # Set the secret key for session management
 
 
-def has_dupes(arr, element):
-    return arr.count(element) >= 2
-
-
-def remove_duplicates(lst):
-    seen = set()
-    return [x for x in lst if not (x in seen or seen.add(x))]
-
-
 def chunk_array(arr, chunk_size=100):
     """Split an array into chunks of specified size.
 
@@ -148,27 +139,6 @@ def remove_all_tracks(access_token, playlist_id):
         tracks = get_tracks(playlist_id=playlist_id, headers=headers)  # Fetch remaining tracks
 
     # print("All tracks have been removed from the playlist.")
-
-
-# DOES NOT WORK YET
-def remove_dupe_tracks(access_token, playlist_id):
-    """
-    Remove all duplicate tracks from a Spotify playlist based on track name, artist, and length.
-
-    :param access_token: OAuth token for Spotify API access.
-    :param playlist_id: ID of the playlist to modify.
-    """
-    url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
-    headers = {
-        'Authorization': f'Bearer {access_token}',
-        'Content-Type': 'application/json'
-    }
-
-    # Fetch the initial set of tracks
-    tracks = get_tracks(playlist_id=playlist_id, headers=headers)
-    num_removed = 0
-
-    return num_removed
 
 
 def reorder_tracks(access_token, playlist_id, range_start, insert_before):
@@ -307,24 +277,6 @@ def fast_shuffle_playlist(playlist_id):
         shuffle_total_time = f"{shuffle_end_time - shuffle_start_time:.2f}"  # Total shuffling time, 2 digits after point
 
         flash(f"Playlist shuffle time: {shuffle_total_time} seconds")  # Return message containing shuffle time
-
-    return redirect(url_for('playlists'))  # Redirect back to the playlists page
-
-
-@app.route('/delete_duplicate_tracks/<playlist_id>', methods=['GET'])  # Define the route to shuffle a playlist
-def delete_duplicate_tracks(playlist_id):
-    delete_start_time = time.time()  # Get time (in seconds) when function started
-    access_token = session.get('access_token')  # Retrieve the access token from the session
-    headers = {'Authorization': f'Bearer {access_token}'}  # Set the Authorization header
-    url = f'https://api.spotify.com/v1/playlists/{playlist_id}'  # Define the URL to get playlist details
-
-    response = requests.get(url, headers=headers)  # Request the playlist details
-
-    if response.status_code == 200:  # Check if the request was successful
-        delete_end_time = time.time()  # Get time (in seconds) when function ended
-        delete_total_time = f"{delete_end_time - delete_start_time:.2f}"  # Total deleting time, 2 digits after point
-        removed_count = remove_dupe_tracks(access_token=access_token, playlist_id=playlist_id)  # Remove duplicate tracks
-        flash(f"Deleted {removed_count} duplicate tracks in {delete_total_time} seconds")  # Return message containing time and count
 
     return redirect(url_for('playlists'))  # Redirect back to the playlists page
 

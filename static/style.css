@@ -62,30 +62,6 @@ li {
     display: flex;
 }
 
-.delete_duplicates_button {
-    margin: 2vh 0vw 0vh 0vw; /* Ensure there is space between buttons */
-    display: inline-block; /* display in 1 line with other buttons */
-    width: max(21vw, 21vh);  /* larger value between 21% of viewport width or height */
-    height: 7vh;
-    font-size: max(1.5vw, 1.5vh);  /* larger value between 1.5% of viewport width or height */
-    background-color: #5A6373; /* Subtle gray-blue */
-    color: #E6E9ED; /* Light text */
-    border: none;
-    border-radius: 1vw;
-    padding: 1vh 1vw 1vh 1vw;  /* Top, right, bottom, left padding */
-    font-family: Arial, sans-serif;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.delete_duplicates_button:hover {
-    background-color: #6B7486; /* Slightly brighter on hover */
-}
-
-.delete_duplicates_button:active {
-    background-color: #434A54; /* Darker click effect */
-}
-
 .fast_shuffle_button {
     margin: 2vh 0vw 0vh 0vw; /* Ensure there is space between buttons (top, left, bottom, right) */
     display: inline-block; /* display in 1 line with other buttons */
