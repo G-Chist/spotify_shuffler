@@ -224,7 +224,7 @@ def shuffle_playlist(playlist_id):
     return redirect(url_for('playlists'))  # Redirect back to the playlists page
 
 
-# Route to handle shuffle button click (receives playlist ID)
+# Route to handle fast shuffle button click (receives playlist ID)
 @app.route('/fast_shuffle_playlist/<playlist_id>', methods=['GET'])  # Define the route to shuffle a playlist
 def fast_shuffle_playlist(playlist_id):
     shuffle_start_time = time.time()  # Get time (in seconds) when shuffling started
@@ -244,6 +244,11 @@ def fast_shuffle_playlist(playlist_id):
 
     flash(f"Playlist shuffle time: {shuffle_total_time} seconds")  # Return message containing shuffle time
 
+    return redirect(url_for('playlists'))  # Redirect back to the playlists page
+
+
+@app.route('/delete_duplicate_tracks/<playlist_id>', methods=['GET'])  # Define the route to shuffle a playlist
+def delete_duplicate_tracks(playlist_id):
     return redirect(url_for('playlists'))  # Redirect back to the playlists page
 
 

@@ -11,7 +11,7 @@ h1 {
 }
 
 h2 {
-    font-size: 2.5vh;  /* Font size is 2.5% of the viewport height */
+    font-size: 3vh;  /* Font size is 2.5% of the viewport height */
     color: #F5F7FA; /* Brighter off-white for headers */
     padding: 2vh 10vw 1vh 0vw;  /* Top, right, bottom, left padding */
 }
@@ -62,10 +62,10 @@ li {
     display: flex;
 }
 
-.shuffle_button {
+.delete_duplicates_button {
     margin: 2vh 0vw 0vh 0vw; /* Ensure there is space between buttons */
     display: inline-block; /* display in 1 line with other buttons */
-    width: max(11vw, 11vh);  /* larger value between 11% of viewport width or height */
+    width: max(21vw, 21vh);  /* larger value between 21% of viewport width or height */
     height: 7vh;
     font-size: max(1.5vw, 1.5vh);  /* larger value between 1.5% of viewport width or height */
     background-color: #5A6373; /* Subtle gray-blue */
@@ -78,11 +78,11 @@ li {
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.shuffle_button:hover {
+.delete_duplicates_button:hover {
     background-color: #6B7486; /* Slightly brighter on hover */
 }
 
-.shuffle_button:active {
+.delete_duplicates_button:active {
     background-color: #434A54; /* Darker click effect */
 }
 

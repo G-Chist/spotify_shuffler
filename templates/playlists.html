@@ -46,9 +46,14 @@
                                 <button type="submit" class="shuffle_button">Shuffle</button>
                             </form>
                             -->
-
                             <form action="{{ url_for('fast_shuffle_playlist', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the fast_shuffle action for the playlist -->
                                 <button type="submit" class="fast_shuffle_button">Shuffle</button>  <!-- Button to submit the form and trigger the fast shuffle action -->
+                            </form>
+                        </div>
+
+                        <div class="button_container">
+                            <form action="{{ url_for('delete_duplicate_tracks', playlist_id=playlist.id) }}" method="GET">  <!-- Form to handle the delete_duplicate_tracks action for the playlist -->
+                                <button type="submit" class="delete_duplicates_button">Delete duplicate tracks</button>  <!-- Button to submit the form and trigger the duplicate track deleting action -->
                             </form>
                         </div>
 
