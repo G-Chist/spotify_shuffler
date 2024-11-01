@@ -39,7 +39,7 @@
                             <p>No image available</p>  <!-- Display a message indicating the absence of an image -->
                         {% endif %}  <!-- End of the image check -->
                         <!-- <h3>{{ playlist.length }} tracks <b>&#8658;</b> estimated shuffle time is {{ playlist.estimated_shuffle_time }} seconds</h3> -->
-
+                        <h3>{{ playlist.length }} tracks</h3>  <!-- Display the track count of the playlist -->
                         <div class="button_container">
                             <!--
                             <form action="{{ url_for('shuffle_playlist', playlist_id=playlist.id) }}" method="GET">
